@@ -9,7 +9,7 @@
 <body>
     <a href="{% url 'post-create' %}">add</a><br><hr>
     {% for post in object_list %}
-        <a href="{% url 'post-detail' post.slug %}">{{ post.title }}</a>
+        <a href="{% url 'post-detail' post.slug %}">{{ post.title }} ({{ post.author }})</a>
         <a href="{% url 'post-update' post.slug %}">Edit</a>
         <br>
     {% empty %}
