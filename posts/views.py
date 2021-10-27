@@ -5,9 +5,11 @@ from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
-from .decorators import author_verification
+
 from posts.forms import PostForm
 from posts.models import Post
+
+from .decorators import author_verification
 
 
 class PostListView(ListView):
