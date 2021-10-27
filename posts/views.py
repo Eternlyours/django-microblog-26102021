@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http.response import Http404, HttpResponseRedirect
+from django.db.models.query_utils import Q
 from django.urls.base import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
@@ -26,6 +26,15 @@ class PostDetailView(DetailView):
 
     def get_queryset(self):
         return super().get_queryset().select_related('author')
+
+
+class AuthorPostsListView(ListView):
+    model = Post
+    template_name = 'post-list.html'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            author__username=self.kwargs['author'])
 
 
 class PostCreateView(CreateView):
