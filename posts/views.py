@@ -33,7 +33,7 @@ class AuthorPostsListView(ListView):
     template_name = 'post-list.html'
 
     def get_queryset(self):
-        return super().get_queryset().filter(
+        return super().get_queryset().select_related('author').filter(
             author__username=self.kwargs['author'])
 
 
