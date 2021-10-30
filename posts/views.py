@@ -44,11 +44,12 @@ class PostCreateView(CreateView):
 
     @method_decorator(login_required(login_url=reverse_lazy('post-list')))
     def post(self, request, *args: str, **kwargs):
-        form = self.get_form()
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+        # form = self.get_form()
+        # if form.is_valid():
+        #     return self.form_valid(form)
+        # else:
+        #     return self.form_invalid(form)
+        return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.instance.author = self.request.user

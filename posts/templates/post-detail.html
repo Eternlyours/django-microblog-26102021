@@ -7,14 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-    Созд. {{ object.created_at }}
+    Созд. {{ object.created_at|date:"D d M Y H:i" }}
     <br>
-    Ред. {{ object.updated_at }}
+    {% if object.updated_at|date == object.created_at|date and object.updated_at|time == object.created_at|time %}        
+    {% else %}
+        Ред. {{ object.updated_at|date:"D d M Y H:i" }}
+    {% endif %}
     <hr>
     {{ object.title }}
     <br>
     {{ object.body|safe }}
     <hr>
-    {{ object.author }}
+    {% if object.author %}
+        {{ object.author.username }}
+    {% else %}
+        Автор удалён
+    {% endif %}
 </body>
 </html>
