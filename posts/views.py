@@ -42,7 +42,11 @@ class PostCreateView(CreateView):
     template_name = 'post-create.html'
     form_class = PostForm
 
-    @method_decorator(login_required(login_url=reverse_lazy('post-list')))
+    @method_decorator(login_required(login_url=reverse_lazy('user-login')))
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    @method_decorator(login_required(login_url=reverse_lazy('user-login')))
     def post(self, request, *args: str, **kwargs):
         # form = self.get_form()
         # if form.is_valid():
